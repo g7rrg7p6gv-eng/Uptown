@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uptown Trading Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Base */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:#fdf4ec; color:#333; }
+
+    /* Header */
+    header { background:#3b4cca; color:#fff; position:sticky; top:0; z-index:1000; }
+    .header-container { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; }
+    .logo { height:60px; }
+    nav { display:flex; gap:15px; }
+    nav a { color:#fff; text-decoration:none; font-weight:bold; }
+    nav a:hover { color:#ffd700; }
+
+    /* Hero */
+    .hero { text-align:center; padding:60px 20px; background:#ffcb05; color:#2a3691; }
+    .hero h1 { font-size:2.5rem; margin-bottom:15px; }
+    .hero p { font-size:1.1rem; margin-bottom:20px; line-height:1.4; }
+    .hero-cta {
+      padding:12px 25px; background:#3b4cca; color:#fff; border:none; border-radius:8px;
+      cursor:pointer; font-size:1rem; transition:0.3s;
+    }
+    .hero-cta:hover { background:#2a3691; }
+
+    /* Featured Products */
+    .featured { padding:40px 20px; max-width:1000px; margin:0 auto; }
+    .featured h2 { font-size:2rem; color:#2a3691; margin-bottom:20px; text-align:center; }
+    .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+    .product-card { background:#fff; border:2px solid #3b4cca; border-radius:10px; text-align:center; padding:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:transform 0.2s; }
+    .product-card:hover { transform:scale(1.03); }
+    .product-card img { max-width:100%; border-radius:8px; }
+    .product-card h3 { margin:10px 0; color:#ff0000; }
+    .product-card p { margin:5px 0; font-weight:bold; }
+    .product-card button { background:#3b4cca; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+    .product-card button:hover { background:#2a3691; }
+
+    /* About */
+    #about { padding:40px 20px; max-width:800px; margin:0 auto; text-align:center; }
+    #about h2 { font-size:2rem; margin-bottom:15px; color:#2a3691; }
+    #about p { font-size:1.1rem; line-height:1.5; }
+
+    /* Footer */
+    footer { text-align:center; padding:15px; background:#3b4cca; color:#fff; margin-top:20px; font-size:0.9rem; }
+
+    /* Responsive */
+    @media(max-width:600px){
+      .header-container { flex-direction:column; text-align:center; }
+      nav { flex-direction:column; gap:10px; }
+      .products { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <img src="logo.png" alt="Uptown Trading Post Logo" class="logo">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#featured">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Uptown Trading Post</h1>
+  <p>Uptown Trading Post is your online destination for authentic Pokémon cards, carefully curated and shipped from Knoxville, TN—backed by the trust and dedication of a veteran.</p>
+  <button class="hero-cta" onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'});">Shop Now</button>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>Uptown Trading Post is your online destination for authentic Pokémon cards, carefully curated and shipped from Knoxville, TN—backed by the trust and dedication of a veteran. We help collectors buy, sell, and trade with confidence, ensuring every card is handled with care and reaches you safely.</p>
+</section>
+
+<section class="featured" id="featured">
+  <h2>Featured Pokémon Cards</h2>
+  <div class="products" id="products-container">
+    <!-- Product cards will be dynamically inserted here -->
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Uptown Trading Post | Knoxville, TN | Trusted and veteran-backed collectibles
+</footer>
+
+<script>
+const products = [
+  {name:"Pikachu", price:10, image:"https://i.imgur.com/7X1FQl0.png", description:"Electric type starter Pokémon card"},
+  {name:"Charizard", price:50, image:"https://i.imgur.com/3X2XGQy.png", description:"Powerful Fire-type Legendary card"},
+  {name:"Bulbasaur", price:8, image:"https://i.imgur.com/5VZpQ5X.png", description:"Grass type starter Pokémon card"},
+  {name:"Squirtle", price:12, image:"https://i.imgur.com/A9e6Lw2.png", description:"Water type starter Pokémon card"},
+  {name:"Jigglypuff", price:7, image:"https://i.imgur.com/WaVnCJd.png", description:"Cute Normal type Pokémon card"}
+];
+
+const container = document.getElementById('products-container');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <p>$${product.price}</p>
+    <p>${product.description}</p>
+    <button onclick="alert('Added ${product.name} to cart!')">Add to Cart</button>
+  `;
+  container.appendChild(card);
+});
+</script>
+
+</body>
+</html>
