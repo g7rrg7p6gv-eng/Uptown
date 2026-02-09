@@ -3,60 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon Card Display</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .card { border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin: 10px; display: inline-block; }
-        .filter { margin-bottom: 20px; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Uptown</title>
 </head>
 <body>
-    <h1>Pokémon Card Display</h1>
-    <div class="filter">
-        <input type="text" id="search" placeholder="Search Pokémon...">
-        <select id="typeFilter">
-            <option value="">All Types</option>
-            <option value="fire">Fire</option>
-            <option value="water">Water</option>
-            <option value="grass">Grass</option>
-            <option value="electric">Electric</option>
-        </select>
-    </div>
-    <div id="cardDisplay"></div>
-
-    <script>
-        const pokemonData = [
-            { name: 'Pikachu', type: 'electric', image: 'pikachu.png' },
-            { name: 'Charmander', type: 'fire', image: 'charmander.png' },
-            { name: 'Squirtle', type: 'water', image: 'squirtle.png' },
-            { name: 'Bulbasaur', type: 'grass', image: 'bulbasaur.png' }
-        ];
-
-        const cardDisplay = document.getElementById('cardDisplay');
-        const searchInput = document.getElementById('search');
-        const typeFilter = document.getElementById('typeFilter');
-
-        function displayCards() {
-            cardDisplay.innerHTML = '';
-            const searchTerm = searchInput.value.toLowerCase();
-            const selectedType = typeFilter.value;
-
-            pokemonData.forEach(pokemon => {
-                if ((selectedType === '' || pokemon.type === selectedType) && 
-                    pokemon.name.toLowerCase().includes(searchTerm)) {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
-                    card.innerHTML = `<h2>${pokemon.name}</h2><img src='${pokemon.image}' alt='${pokemon.name}' width='100'><p>Type: ${pokemon.type}</p>`;
-                    cardDisplay.appendChild(card);
-                }
-            });
-        }
-
-        searchInput.addEventListener('input', displayCards);
-        typeFilter.addEventListener('change', displayCards);
-
-        // Initial display
-        displayCards();
-    </script>
+    <h1>Welcome to Uptown</h1>
+    <script src="script.js"></script>
 </body>
 </html>
